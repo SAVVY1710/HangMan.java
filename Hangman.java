@@ -37,31 +37,76 @@ public class Hangman
         tryCatchIt();
         while(input.hasNext())
         {
-            counter++;
+            counter ++;
             String temp = input.next();
         }
         input.close();
         String [] words = new String[counter];
-        int num = (int)(Math.random() * counter)-1;
+        int num = (int) (Math.random() * counter)-1;
         counter = 0;
         tryCatchIt();
         while(input.hasNext())
         {
             counter++;
-            words[counter-1] = input.next();
+            words[ counter-1 ] = input.next();
         }
         input.close();
-        String wd = words[num];
+        String wd = words[ num ];
         int numoflives = 5;
         newwd = "";
         wd = wd.toUpperCase();
-        System.out.println("Here is your random word: \n");
+        System.out.println("Here is your random word: \n ");
         hang(wd);
         for(int i = 0; i < wd.length(); i++)
         {
             newwd += "-";
         }
-        
+        while(numoflives > 0)
+        {
+            String [] ar = new String[wd.length()];
+            System.out.print("Please guess a letter: ");
+            String let = scan.next();
+            let = let.toUpperCase();
+            for(int i = 0; i < newwd.length(); i++)
+            {
+                if(newwd.charAt(i) == let.charAt(0))
+                {
+                    numoflives = numoflives-1;
+                    System.out.println("That is incorrect. You have " + numoflives + " guess(es) left.");
+                    break;
+                }
+            }
+            int [] index = new int[wd.length()];
+            int temp = 0;
+            index[0] = -5;
+            for(int i = 0; i < wd.length(); i++)
+            {
+                if(wd.substring(i,i+1).equalsIgnoreCase(let))
+                {
+                    temp ++;
+                    index[temp-1] = i;
+                    man(index[temp-1], newwd, let);
+                }
+            }
+            System.out.println(newwd + "\n");
+            if(index[0] == -5)
+            {
+                numoflives = numoflives-1;
+                System.out.println("That is incorrect. You have " + numoflives + " guess(es) left.");
+            }
+
+            if(wd.equalsIgnoreCase(newwd))
+            {
+                System.out.println("You Won! Congratulations!");
+                numoflives = 0;
+            }
+            else if(numoflives == 0)
+            {
+                System.out.println("You Lost! Try Again:(");
+                System.out.println("The word was " + wd);
+            }
+        }
+        System.out.println("\n\n");
     }
     public void tryCatchIt()
     {
@@ -92,28 +137,28 @@ public class Hangman
             System.err.println("Cannot append to " +  " dictionary.txt");
             System.exit(1);
         }
-        pw.println(wd);
+        pw.println( wd );
         pw.close();
     }
     public void hang(String wd)
     {
         for(int i = 0; i < wd.length(); i++)
         {
-            System.out.print("-");
+            System.out.print(" - ");
         }
-        System.out.println("\n");
+        System.out.println(" \n ");
     }
     public void man(int index, String wd, String let)
     {
         String temp = newwd;
         newwd = "";
-        for(int i = 0; i < wd.length(); i++)
+        for(int i = 0; i < wd.length(); i ++)
         {
-            if(index == i)
+            if(index== i)
             {
                 newwd += let;
             }
-            else newwd += temp.charAt(i);
+            else newwd += temp.charAt( i );
         }
     }
 }
