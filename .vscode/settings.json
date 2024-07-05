@@ -1,0 +1,15 @@
+{
+    "graalvm.installations": [
+        "c:\\Users\\bhask\\stable-diffusion.cpp\\models\\graalvm-jdk-22.0.1+8.1"
+    ],
+    "java.configuration.runtimes": [
+        {
+            "name": "JavaSE-22",
+            "path": "c:\\Users\\bhask\\stable-diffusion.cpp\\models\\graalvm-jdk-22.0.1+8.1"
+        }
+    ],
+    "graalvm.home": "c:\\Users\\bhask\\stable-diffusion.cpp\\models\\graalvm-jdk-22.0.1+8.1",
+    "terminal.integrated.env.windows": {
+        "GRAALVM_HOME": "c:\\Users\\bhask\\stable-diffusion.cpp\\models\\graalvm-jdk-22.0.1+8.1"
+    }
+}
